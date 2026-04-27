@@ -1,142 +1,72 @@
-'use client';
-import { useState, useRef } from 'react';
+"use client";
+
+import { useEffect, useRef } from 'react';
+import gsap from 'gsap';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
 
 export default function HeroSection() {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [playing, setPlaying] = useState<boolean>(false);
-  const [showControls, setShowControls] = useState<boolean>(false);
+  const containerRef = useRef<HTMLElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
+  const btnGroupRef = useRef<HTMLDivElement>(null);
 
-  const togglePlay = () => {
-    if (!videoRef.current) return;
-    if (playing) { videoRef.current.pause(); setPlaying(false); }
-    else          { videoRef.current.play();  setPlaying(true);  }
-  };
+  useEffect(() => {
+    if (textRef.current && btnGroupRef.current) {
+      const texts = textRef.current.children;
+      const btns = btnGroupRef.current.children;
 
+      // Staggered reveal for text
+      gsap.fromTo(
+        texts,
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, stagger: 0.2, delay: 0.2, ease: "power3.out" }
+      );
 
-  interface ServiceChip {
-    label: string;
-    icon: string;
-    href: string;
-  }
+      // Entrance for buttons
+      gsap.fromTo(
+        btns,
+        { scale: 0.95, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.5, stagger: 0.1, delay: 0.6, ease: "back.out(1.7)" }
+      );
+    }
+  }, []);
 
   return (
-    <section
-      className="section-hero relative overflow-hidden flex items-center min-h-[90vh]"
-      style={{
-        paddingTop: 'clamp(12rem, 20vw, 18rem)',
-        paddingBottom: 'clamp(10rem, 15vw, 14rem)',
-        background: 'var(--bg-hero)',
-      }}
-
-    >
-      <div className="centered-content relative z-10">
-
-        {/* ── Headline ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-32 items-center">
-          <div className="flex flex-col gap-12">
-
-            <div className="overflow-hidden">
-              <motion.h1
-                className="display-xl text-[--c-navy] leading-none drop-shadow-sm"
-                initial={{ y: 80, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-              >
-                Bridging the Gap<span style={{ color: 'var(--c-navy-mid)' }}>.</span>
-              </motion.h1>
-            </div>
-            <div className="overflow-hidden">
-              <motion.p
-                className="text-[18px] leading-[1.6] text-gray-600 max-w-xl"
-                initial={{ y: 40, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-              >
-                Dr. Shoba Kapoor guides researchers, professionals and students 
-                from India to build thriving careers in Germany — with clarity, 
-                confidence, and a concrete plan.
-              </motion.p>
-            </div>
-
-            <motion.div
-              className="flex flex-wrap gap-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
+    <section ref={containerRef} className="relative min-h-[90vh] flex items-center pt-20 overflow-hidden bg-white text-[var(--c-text)]">
+      {/* Subtle Background Gradient */}
+      <div className="absolute inset-0 z-0 bg-gradient-to-br from-[#FAFAFA] to-[#E5E7EB] opacity-60"></div>
+      
+      <div className="centered-content relative z-10 text-center">
+        <div ref={textRef} className="max-w-4xl mx-auto mb-10">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 leading-tight text-[var(--c-text)]">
+            Advanced German (C1+) <br/>
+            <span className="text-[var(--c-accent-primary)]">Speak with Confidence and Precision</span>
+          </h1>
+          <p className="text-xl md:text-2xl text-[var(--c-muted)] max-w-3xl mx-auto font-light leading-relaxed">
+            Move beyond "correct German" and learn how to express yourself clearly, naturally, and effectively in real conversations.
+          </p>
+        </div>
+        
+        <div ref={btnGroupRef} className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+          <div className="flex flex-col items-center">
+            <Link 
+              href="https://calendly.com/dr-shoba-kapoor" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-4 bg-[var(--c-accent-primary)] hover:bg-orange-700 text-white font-medium rounded-xl shadow-lg transition-transform hover:scale-105 active:scale-95"
             >
-              <Link 
-                href="https://calendly.com/dr-shoba-kapoor/30min" 
-                className="btn-primary text-lg px-8 py-4 shadow-xl hover:shadow-2xl transition-all"
-              >
-                <span>📞</span>
-                Book a Free Call
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="ml-2">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </Link>
-            </motion.div>
-
+              Book your spot
+            </Link>
+            <span className="text-sm text-[var(--c-subtle)] mt-2 font-medium">8-week group program – €240</span>
           </div>
-
-          {/* ── Right column: Video + Service cards ── */}
-          <div className="flex flex-col gap-4">
-            {/* Video Player */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 30 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.35 }}
-              className="relative rounded-[24px] overflow-hidden aspect-video shadow-2xl group cursor-pointer bg-[--c-navy]"
-              style={{ boxShadow: '0 32px 80px rgba(26,46,107,0.2)' }}
-              onMouseEnter={() => setShowControls(true)}
-              onMouseLeave={() => setShowControls(false)}
-              onClick={togglePlay}
+          
+          <div className="flex flex-col items-center">
+            <Link 
+              href="#pricing" 
+              className="px-8 py-4 bg-transparent border-2 border-[var(--c-accent-primary)] text-[var(--c-accent-primary)] hover:bg-[var(--c-accent-primary)] hover:text-white font-medium rounded-xl transition-all hover:scale-105 active:scale-95"
             >
-              <video
-                ref={videoRef}
-                src="/Video1.mp4"
-                className="w-full h-full object-cover opacity-90"
-                preload="metadata"
-                playsInline
-                onEnded={() => setPlaying(false)}
-              />
-              <AnimatePresence>
-                {(!playing || showControls) && (
-                  <motion.div
-                    key="overlay"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute inset-0 flex items-center justify-center"
-                    style={{ background: playing ? 'rgba(0,0,0,0.12)' : 'rgba(0,0,0,0.3)' }}
-                  >
-                    <motion.div
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.93 }}
-                      className="w-14 h-14 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-xl"
-                    >
-                      <AnimatePresence mode="wait">
-                        {playing ? (
-                          <motion.svg key="pause" initial={{ scale: 0.7, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.7, opacity: 0 }} className="w-5 h-5 text-[--c-navy]" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
-                          </motion.svg>
-                        ) : (
-                          <motion.svg key="play" initial={{ scale: 0.7, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.7, opacity: 0 }} className="w-6 h-6 text-[--c-navy] ml-0.5" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M8 5v14l11-7z"/>
-                          </motion.svg>
-                        )}
-                      </AnimatePresence>
-                    </motion.div>
-                    {!playing && (
-                      <span className="absolute bottom-4 left-5 text-white/60 text-xs font-medium tracking-wide">Introduction Video</span>
-                    )}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-
+              Join next group
+            </Link>
+            <span className="text-sm text-transparent mt-2 pointer-events-none">Placeholder</span>
           </div>
         </div>
       </div>

@@ -29,7 +29,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="de" className={jakarta.variable} data-scroll-behavior="smooth">
       <head>
-        <link rel="icon" href="/images/logo.svg" type="image/svg+xml" />
+        <link rel="icon" href="/logo-new.svg" type="image/svg+xml" />
       </head>
       <body className="antialiased font-sans">{children}</body>
     </html>

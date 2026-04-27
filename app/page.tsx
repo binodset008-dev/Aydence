@@ -1,24 +1,18 @@
 import Navbar from './components/Navbar';
-import HeroSection from './components/HeroSection';
-import WhyGermany from './components/WhyGermany';
-import FreeCallSection from './components/FreeCallSection';
-import ShortTermCourses from './components/ShortTermCourses';
-import WebinarModules from './components/WebinarModules';
-import AboutDoctor from './components/AboutDoctor';
+import HomeHero from './components/HomeHero';
+import AboutDrShoba from './components/AboutDrShoba';
 import Footer from './components/Footer';
 import PageWrapper from './components/PageWrapper';
+import WhatsAppButton from './components/WhatsAppButton';
 
 export default function Home() {
   return (
     <PageWrapper>
       <Navbar />
-      <HeroSection />
-      <WhyGermany />
-      <FreeCallSection />
-      <WebinarModules />
-      <ShortTermCourses />
-      <AboutDoctor />
+      <HomeHero />
+      <AboutDrShoba />
       <Footer />
+      <WhatsAppButton />
     </PageWrapper>
   );
 }

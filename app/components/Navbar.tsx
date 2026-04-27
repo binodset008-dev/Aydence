@@ -3,23 +3,30 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useScroll, useSpring } from 'framer-motion';
+import { usePathname } from 'next/navigation';
 
 interface NavLink {
   label: string;
   href: string;
 }
 
-const navLinks: NavLink[] = [
-  { label: 'Free Call', href: 'https://calendly.com/dr-shoba-kapoor/30min' },
-  { label: 'Webinars',  href: '/#programmes' },
-  { label: 'Courses',   href: '/#short-term-courses' },
-  { label: 'About',     href: '/#about-doctor' },
-  { label: 'Contact',   href: '/contact' },
+const homeLinks: NavLink[] = [
+  { label: 'About', href: '#about' },
+  { label: 'Advanced German (C1+)', href: '/advanced-german' },
+];
+
+const advancedGermanLinks: NavLink[] = [
+  { label: 'Home', href: '/' },
+  { label: 'The Gap', href: '#problem' },
+  { label: 'Training', href: '#training' },
+  { label: 'How it Works', href: '#how-it-works' },
+  { label: 'Pricing', href: '#pricing' },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState<boolean>(false);
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
+  const pathname = usePathname();
 
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 200, damping: 30, restDelta: 0.001 });
@@ -30,48 +37,43 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const currentLinks = pathname === '/advanced-german' ? advancedGermanLinks : homeLinks;
+
   return (
     <>
       {/* Scroll progress bar */}
       <motion.div
         style={{ scaleX, transformOrigin: 'left' }}
-        className="fixed top-0 left-0 right-0 z-[60] h-[2px] bg-gradient-to-r from-[#1a2e6b] via-[#4a6abf] to-[#6b9bff]"
+        className="fixed top-0 left-0 right-0 z-[60] h-[3px] bg-gradient-to-r from-[var(--c-accent-primary)] to-[var(--c-accent-secondary)]"
       />
 
       <motion.nav
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
-        style={{
-          background: scrolled ? 'rgba(249,249,249,0.92)' : 'rgba(249,249,249,0.7)',
-          backdropFilter: 'blur(16px)',
-          WebkitBackdropFilter: 'blur(16px)',
-          borderBottom: scrolled ? '1px solid rgba(0,0,0,0.06)' : '1px solid transparent',
-          boxShadow: scrolled ? '0 2px 24px rgba(0,0,0,0.04)' : 'none',
-        }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'glass-nav py-2' : 'bg-transparent py-4'}`}
       >
-        <div className="max-w-[1400px] mx-auto px-[40px]">
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
 
-          <div className="flex items-center justify-between h-[72px]">
+          <div className="flex items-center justify-between h-[60px]">
 
             {/* Logo */}
-            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Link href="/" className="flex items-center">
                 <Image
-                  src="/Aydence logo.png"
+                  src="/logo-new.png"
                   alt="Aydence Logo"
                   width={320}
                   height={112}
                   priority
-                  className="h-10 md:h-14 lg:h-16 w-auto object-contain"
+                  className="h-16 md:h-20 w-auto object-contain filter drop-shadow-sm"
                 />
               </Link>
             </motion.div>
 
             {/* Desktop nav */}
-            <div className="hidden md:flex items-center gap-8">
-              {navLinks.map((link, i) => (
+            <div className="hidden md:flex items-center gap-10">
+              {currentLinks.map((link, i) => (
                 <motion.div
                   key={link.label}
                   initial={{ opacity: 0, y: -8 }}
@@ -80,24 +82,19 @@ export default function Navbar() {
                 >
                   <Link
                     href={link.href}
-                    className="relative text-sm font-medium text-[--c-text] group"
-                    style={{ color: 'var(--c-text)' }}
+                    className="relative text-sm uppercase tracking-widest font-semibold text-slate-600 group hover:text-[var(--c-accent-primary)] transition-colors duration-300"
                   >
-                    <span className="hover:text-[--c-navy] transition-colors duration-200">
-                      {link.label}
-                    </span>
-                    <span className="absolute -bottom-1 left-0 w-0 h-[1.5px] bg-[--c-navy] rounded-full group-hover:w-full transition-all duration-300" />
+                    {link.label}
+                    <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-[var(--c-accent-primary)] rounded-full group-hover:w-full transition-all duration-300" />
                   </Link>
                 </motion.div>
               ))}
             </div>
 
-
-
             {/* Mobile hamburger */}
             <motion.button
               id="menu-toggle"
-              className="md:hidden flex flex-col gap-[5px] p-2"
+              className="md:hidden flex flex-col gap-[6px] p-2"
               onClick={() => setMenuOpen(!menuOpen)}
               whileTap={{ scale: 0.9 }}
               aria-label="Toggle menu"
@@ -106,12 +103,11 @@ export default function Navbar() {
                 <motion.span
                   key={bar}
                   animate={
-                    bar === 0 ? (menuOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 })
+                    bar === 0 ? (menuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 })
                   : bar === 1 ? (menuOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 })
-                  : (menuOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 })
+                  : (menuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 })
                   }
-                  className="block w-5 h-[1.5px] bg-[--c-navy] rounded-full origin-center"
-                  style={{ background: 'var(--c-navy)' }}
+                  className="block w-6 h-[2px] bg-slate-800 rounded-full origin-center"
                   transition={{ duration: 0.25 }}
                 />
               ))}
@@ -125,14 +121,13 @@ export default function Navbar() {
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="md:hidden overflow-hidden"
           >
-            <div className="flex flex-col gap-2 pt-2 pb-6 border-t border-black/5">
-              {navLinks.map((link, i) => (
+            <div className="flex flex-col gap-4 pt-4 pb-8 border-t border-slate-200 mt-4">
+              {currentLinks.map((link, i) => (
                 <Link
                   key={link.label}
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
-                  className="text-sm font-medium py-2.5 px-2"
-                  style={{ color: 'var(--c-text)' }}
+                  className="text-lg font-medium py-2 px-4 text-slate-700 hover:text-[var(--c-accent-primary)] hover:bg-slate-100 rounded-xl transition-all"
                 >
                   <motion.span
                     initial={{ x: -16, opacity: 0 }}
@@ -144,16 +139,6 @@ export default function Navbar() {
                   </motion.span>
                 </Link>
               ))}
-              <motion.div
-                initial={{ x: -16, opacity: 0 }}
-                animate={menuOpen ? { x: 0, opacity: 1 } : { x: -16, opacity: 0 }}
-                transition={{ delay: 0.22, duration: 0.3 }}
-                className="mt-3"
-              >
-                <Link href="https://calendly.com/dr-shoba-kapoor/30min" onClick={() => setMenuOpen(false)} className="btn-primary block text-center w-full">
-                  Request a Free Call
-                </Link>
-              </motion.div>
             </div>
           </motion.div>
         </div>

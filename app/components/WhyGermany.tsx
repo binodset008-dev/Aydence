@@ -1,16 +1,14 @@
 'use client';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ScrollReveal, StaggerReveal, fadeUp, fadeLeft, fadeRight } from './AnimationHelpers';
+import { ScrollReveal, StaggerReveal, fadeUp, fadeLeft } from './AnimationHelpers';
 import { MouseEvent } from 'react';
-
 
 interface Reason {
   icon: string;
   title: string;
   desc: string;
 }
-
 
 const reasons: Reason[] = [
   { icon: '🏛️', title: 'World-Class Research', desc: 'Access Max Planck, Fraunhofer and top-tier universities.' },
@@ -22,27 +20,25 @@ const reasons: Reason[] = [
 export default function WhyGermany() {
   return (
     <>
-
       {/* ── Why Germany Section ───────────────────────────────── */}
-      <section className="section-pad section-white" id="about">
+      <section className="section-pad bg-[--bg-secondary]" id="about">
         <div className="centered-content">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-32 items-center">
-
 
             <div>
               <ScrollReveal variants={fadeLeft}>
                 <div className="flex items-center gap-4 mb-6">
-                  <span className="section-divider m-0" />
-                  <span className="eyebrow">Why Germany?</span>
+                  <span className="w-12 h-[2px] bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full" />
+                  <span className="text-xs uppercase tracking-[0.2em] font-semibold text-cyan-700">Why Germany?</span>
                 </div>
               </ScrollReveal>
               <ScrollReveal variants={fadeLeft} custom={1} className="mb-8">
-                <h2 className="display-lg text-[--c-navy]">
+                <h2 className="text-4xl md:text-5xl font-bold text-slate-900">
                   Unmatched opportunity awaits you.
                 </h2>
               </ScrollReveal>
               <ScrollReveal variants={fadeLeft} custom={2} className="mb-12">
-                <p className="text-[--c-muted] text-lg leading-relaxed font-light">
+                <p className="text-slate-600 text-lg leading-relaxed font-light">
                   Germany offers a rare combination of world-class research, economic stability, and
                   an open path to permanent residency — but navigating the system alone is overwhelming.
                 </p>
@@ -51,14 +47,13 @@ export default function WhyGermany() {
 
             {/* Right: 2×2 reasons */}
             <StaggerReveal className="grid grid-cols-1 sm:grid-cols-2 gap-10">
-
               {reasons.map((r, i) => (
                 <motion.div
                   key={r.title}
                   variants={fadeUp}
                   custom={i}
-                  whileHover={{ y: -8, boxShadow: '0 32px 80px rgba(26,46,107,0.08)' }}
-                  className="card p-10 flex flex-col gap-8"
+                  whileHover={{ y: -8, boxShadow: '0 32px 80px rgba(0,0,0,0.06)' }}
+                  className="glass bg-white/70 border border-slate-200 p-10 flex flex-col gap-8 rounded-3xl"
                 >
                   <motion.div
                     className="text-4xl"
@@ -67,10 +62,9 @@ export default function WhyGermany() {
                     {r.icon}
                   </motion.div>
                   <div className="flex flex-col gap-4">
-                    <h3 className="font-semibold text-[--c-navy] text-xl">{r.title}</h3>
-                    <p className="text-[18px] font-[400] text-[--c-muted] leading-[1.8]">{r.desc}</p>
+                    <h3 className="font-bold text-slate-900 text-xl">{r.title}</h3>
+                    <p className="text-[17px] font-light text-slate-600 leading-relaxed">{r.desc}</p>
                   </div>
-
                 </motion.div>
               ))}
             </StaggerReveal>

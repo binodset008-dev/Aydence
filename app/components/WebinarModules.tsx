@@ -29,7 +29,7 @@ const webinarCards: WebinarCardContent[] = [
     ],
     priceTag: 'Introductory Offer: ₹ 199',
     buttonText: 'BOOK MY FIRST CLASS',
-    buttonLink: 'mailto:Info@aydence.de'
+    buttonLink: '/payment?course=first-german-class'
   },
   {
     theme: 'green',
@@ -43,7 +43,7 @@ const webinarCards: WebinarCardContent[] = [
     ],
     priceTag: 'Starting From: ₹ 499',
     buttonText: 'JOIN A SESSION',
-    buttonLink: 'mailto:Info@aydence.de'
+    buttonLink: '/payment?course=casual-speaking'
   },
   {
     theme: 'orange',
