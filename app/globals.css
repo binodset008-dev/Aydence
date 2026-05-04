@@ -14,9 +14,9 @@
   --c-accent-purple:#8b5cf6; /* Electric Purple */
 
   /* Backgrounds */
-  --bg-primary:    #FAFAFA; /* Clean Off-White */
-  --bg-secondary:  #F3F4F6; /* Gray 100 */
-  --bg-hero:       linear-gradient(135deg, #FAFAFA, #E5E7EB);
+  --bg-primary:    #F8F9FA; /* Cool Gray Off-White */
+  --bg-secondary:  #F1F3F5; /* Gray 100 */
+  --bg-hero:       linear-gradient(135deg, #F8F9FA, #E5E7EB);
   --bg-dark:       #171717; /* Neutral 900 */
 
   /* Text */
@@ -108,4 +108,32 @@ body {
 ::selection {
   background: var(--c-accent-primary);
   color: #fff;
+}
+
+/* ─── CTA Button (Nav) ──────────────────────────────────────── */
+.cta-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.5rem 1.25rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+  background: linear-gradient(135deg, var(--c-accent-primary), #b45309);
+  border-radius: var(--radius-pill);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(217, 119, 6, 0.35);
+  transition: transform 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.cta-nav-btn:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 6px 22px rgba(217, 119, 6, 0.45);
+}
+.cta-nav-btn:active {
+  transform: translateY(0) scale(0.98);
 }

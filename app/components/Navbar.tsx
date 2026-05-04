@@ -89,29 +89,54 @@ export default function Navbar() {
                   </Link>
                 </motion.div>
               ))}
+
+              {/* Desktop CTA */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.3, duration: 0.4 }}
+              >
+                <Link
+                  id="nav-cta-desktop"
+                  href={pathname === '/advanced-german' ? '#pricing' : '/advanced-german#pricing'}
+                  className="cta-nav-btn"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  Book a Consultation
+                </Link>
+              </motion.div>
             </div>
 
-            {/* Mobile hamburger */}
-            <motion.button
-              id="menu-toggle"
-              className="md:hidden flex flex-col gap-[6px] p-2"
-              onClick={() => setMenuOpen(!menuOpen)}
-              whileTap={{ scale: 0.9 }}
-              aria-label="Toggle menu"
-            >
-              {[0, 1, 2].map((bar) => (
-                <motion.span
-                  key={bar}
-                  animate={
-                    bar === 0 ? (menuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 })
-                  : bar === 1 ? (menuOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 })
-                  : (menuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 })
-                  }
-                  className="block w-6 h-[2px] bg-slate-800 rounded-full origin-center"
-                  transition={{ duration: 0.25 }}
-                />
-              ))}
-            </motion.button>
+            {/* Mobile CTA + Hamburger */}
+            <div className="md:hidden flex items-center gap-3">
+              <Link
+                id="nav-cta-mobile"
+                href={pathname === '/advanced-german' ? '#pricing' : '/advanced-german#pricing'}
+                className="cta-nav-btn !text-[0.7rem] !px-3 !py-[0.4rem]"
+              >
+                1:1 Webinar (€1)
+              </Link>
+              <motion.button
+                id="menu-toggle"
+                className="flex flex-col gap-[6px] p-2"
+                onClick={() => setMenuOpen(!menuOpen)}
+                whileTap={{ scale: 0.9 }}
+                aria-label="Toggle menu"
+              >
+                {[0, 1, 2].map((bar) => (
+                  <motion.span
+                    key={bar}
+                    animate={
+                      bar === 0 ? (menuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 })
+                    : bar === 1 ? (menuOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 })
+                    : (menuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 })
+                    }
+                    className="block w-6 h-[2px] bg-slate-800 rounded-full origin-center"
+                    transition={{ duration: 0.25 }}
+                  />
+                ))}
+              </motion.button>
+            </div>
           </div>
 
           {/* Mobile menu */}
@@ -139,6 +164,24 @@ export default function Navbar() {
                   </motion.span>
                 </Link>
               ))}
+
+              {/* Mobile menu CTA */}
+              <motion.div
+                initial={{ y: 10, opacity: 0 }}
+                animate={menuOpen ? { y: 0, opacity: 1 } : { y: 10, opacity: 0 }}
+                transition={{ delay: currentLinks.length * 0.06, duration: 0.3 }}
+                className="px-4 pt-2"
+              >
+                <Link
+                  id="nav-cta-mobile-menu"
+                  href={pathname === '/advanced-german' ? '#pricing' : '/advanced-german#pricing'}
+                  onClick={() => setMenuOpen(false)}
+                  className="cta-nav-btn w-full justify-center text-center !text-sm !py-3"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  Book a Consultation
+                </Link>
+              </motion.div>
             </div>
           </motion.div>
         </div>
