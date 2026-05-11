@@ -81,7 +81,7 @@ export default function FreeCallSection() {
                   </p>
                   
                   <Link 
-                    href="https://calendly.com/dr-shoba-kapoor/30min" 
+                    href="/booking" 
                     className="btn-primary self-start text-[16px] px-10 py-5 shadow-lg hover:shadow-xl transition-all"
                   >
                     BOOK A CALL

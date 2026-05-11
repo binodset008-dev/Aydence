@@ -58,7 +58,7 @@ const webinarCards: WebinarCardContent[] = [
     priceTag: 'Total Package: ₹ 12,000',
     badge: 'FREE FIRST SESSION!',
     buttonText: 'BOOK YOUR FREE CALL',
-    buttonLink: 'https://calendly.com/dr-shoba-kapoor/30min'
+    buttonLink: '/booking'
   }
 ];
 

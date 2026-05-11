@@ -74,6 +74,7 @@ export function ScrollReveal({
       animate={inView ? 'visible' : 'hidden'}
       className={className}
       id={id}
+      style={{ willChange: "transform, opacity" }}
     >
       {children}
     </motion.div>
@@ -98,6 +99,7 @@ export function StaggerReveal({ children, className = '', once = true }: Stagger
       initial="hidden"
       animate={inView ? 'visible' : 'hidden'}
       className={className}
+      style={{ willChange: "transform, opacity" }}
     >
       {children}
     </motion.div>

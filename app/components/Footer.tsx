@@ -24,7 +24,7 @@ interface SocialLink {
 
 const quickLinks: QuickLink[] = [
   { label: 'Advanced German (C1+)', href: '/advanced-german' },
-  { label: 'Booking', href: 'https://calendly.com/dr-shoba-kapoor' },
+  { label: 'Booking', href: '/booking' },
   { label: 'About', href: '/#about' },
 ];
 
@@ -99,9 +99,7 @@ export default function Footer() {
                   Join Webinar for €1
                 </Link>
                 <Link
-                  href="https://calendly.com/dr-shoba-kapoor/30min?back=1&month=2026-04"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="/booking"
                   className="glass border border-slate-200 text-slate-900 font-bold px-8 py-4 rounded-full hover:bg-slate-100 hover:border-slate-300 hover:scale-105 transition-all text-sm md:text-base uppercase tracking-wider"
                 >
                   Book 1:1 Sessions
@@ -113,7 +111,7 @@ export default function Footer() {
       )}
 
       {/* ── Footer Link Grid ───────────────────────────────────── */}
-      <div className="centered-content py-20 relative z-10">
+      <div className="centered-content pt-20 pb-0 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16">
           
           {/* Col 1: Brand */}
@@ -184,16 +182,16 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <motion.div
-          className="mt-20 pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4"
+          className="mt-20 pt-8 pb-0 mb-0 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <p className="text-slate-500 text-sm font-light">
+          <p className="text-slate-500 text-sm font-light m-0 p-0">
             © {new Date().getFullYear()} Aydence. All rights reserved.
           </p>
-          <p className="text-slate-500 text-sm font-light">
+          <p className="text-slate-500 text-sm font-light m-0 p-0">
             Made with <span className="text-cyan-500">♥</span> in Germany
           </p>
         </motion.div>

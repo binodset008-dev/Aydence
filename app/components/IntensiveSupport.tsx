@@ -51,9 +51,7 @@ export default function IntensiveSupport() {
           
           <div className="flex-shrink-0 w-full md:w-auto">
             <Link
-              href="https://calendly.com/dr-shoba-kapoor/30min?back=1&month=2026-04"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/booking"
               className="block w-full md:w-auto px-8 py-4 bg-[var(--bg-dark)] text-white text-center font-bold rounded-xl hover:bg-black transition-all duration-300"
             >
               Book 1:1 intensive

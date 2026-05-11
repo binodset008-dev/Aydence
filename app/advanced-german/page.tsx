@@ -1,15 +1,18 @@
+import dynamic from 'next/dynamic';
 import Navbar from '../components/Navbar';
 import HeroSection from '../components/HeroSection';
-import ProblemSection from '../components/ProblemSection';
-import WhatYouWillTrain from '../components/WhatYouWillTrain';
-import HowItWorks from '../components/HowItWorks';
-import WhoIsThisFor from '../components/WhoIsThisFor';
-import PricingSection from '../components/PricingSection';
-import CtaSection from '../components/CtaSection';
-import IntensiveSupport from '../components/IntensiveSupport';
-import Footer from '../components/Footer';
 import PageWrapper from '../components/PageWrapper';
-import WhatsAppButton from '../components/WhatsAppButton';
+
+// Lazy load below-the-fold components
+const ProblemSection = dynamic(() => import('../components/ProblemSection'), { ssr: true });
+const WhatYouWillTrain = dynamic(() => import('../components/WhatYouWillTrain'), { ssr: true });
+const HowItWorks = dynamic(() => import('../components/HowItWorks'), { ssr: true });
+const WhoIsThisFor = dynamic(() => import('../components/WhoIsThisFor'), { ssr: true });
+const PricingSection = dynamic(() => import('../components/PricingSection'), { ssr: true });
+const CtaSection = dynamic(() => import('../components/CtaSection'), { ssr: true });
+const IntensiveSupport = dynamic(() => import('../components/IntensiveSupport'), { ssr: true });
+const Footer = dynamic(() => import('../components/Footer'), { ssr: true });
+const WhatsAppButton = dynamic(() => import('../components/WhatsAppButton'));
 
 export default function AdvancedGermanHome() {
   return (

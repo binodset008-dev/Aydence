@@ -95,7 +95,7 @@ export default function PricingSection() {
               </div>
 
               <Link
-                href="https://calendly.com/dr-shoba-kapoor"
+                href="/booking"
                 ref={btnRef as any}
                 className="block w-full py-5 bg-[var(--c-accent-primary)] text-white text-center font-bold text-lg rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 hover:bg-orange-700 transition-all duration-300"
               >

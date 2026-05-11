@@ -49,9 +49,7 @@ export default function HeroSection() {
         <div ref={btnGroupRef} className="flex flex-col sm:flex-row gap-6 justify-center items-center">
           <div className="flex flex-col items-center">
             <Link 
-              href="https://calendly.com/dr-shoba-kapoor" 
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/booking" 
               className="px-8 py-4 bg-[var(--c-accent-primary)] hover:bg-orange-700 text-white font-medium rounded-xl shadow-lg transition-transform hover:scale-105 active:scale-95"
             >
               Book your spot

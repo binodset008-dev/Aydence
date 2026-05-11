@@ -47,17 +47,13 @@ export default function CtaSection() {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
               <Link
-                href="https://calendly.com/dr-shoba-kapoor"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/booking"
                 className="w-full sm:w-auto px-10 py-4 bg-[var(--c-accent-primary)] text-white font-bold rounded-xl shadow-xl hover:bg-orange-700 transition-all duration-300"
               >
                 Book your spot
               </Link>
               <Link
-                href="https://calendly.com/dr-shoba-kapoor/30min?back=1&month=2026-04"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/booking"
                 className="w-full sm:w-auto px-10 py-4 border-2 border-white/30 hover:border-white hover:bg-white hover:text-black text-white font-bold rounded-xl transition-all duration-300"
               >
                 Book 1:1 intensive

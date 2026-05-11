@@ -98,7 +98,7 @@ export default function Navbar() {
               >
                 <Link
                   id="nav-cta-desktop"
-                  href={pathname === '/advanced-german' ? '#pricing' : '/advanced-german#pricing'}
+                  href="/booking"
                   className="cta-nav-btn"
                 >
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
@@ -111,7 +111,7 @@ export default function Navbar() {
             <div className="md:hidden flex items-center gap-3">
               <Link
                 id="nav-cta-mobile"
-                href={pathname === '/advanced-german' ? '#pricing' : '/advanced-german#pricing'}
+                href="/booking"
                 className="cta-nav-btn !text-[0.7rem] !px-3 !py-[0.4rem]"
               >
                 1:1 Webinar (€1)
@@ -174,7 +174,7 @@ export default function Navbar() {
               >
                 <Link
                   id="nav-cta-mobile-menu"
-                  href={pathname === '/advanced-german' ? '#pricing' : '/advanced-german#pricing'}
+                  href="/booking"
                   onClick={() => setMenuOpen(false)}
                   className="cta-nav-btn w-full justify-center text-center !text-sm !py-3"
                 >

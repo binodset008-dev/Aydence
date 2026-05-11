@@ -27,7 +27,7 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="de" className={jakarta.variable} data-scroll-behavior="smooth">
+    <html lang="de" className={jakarta.variable} data-scroll-behavior="smooth" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/logo-new.svg" type="image/svg+xml" />
       </head>

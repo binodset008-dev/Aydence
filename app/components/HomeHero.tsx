@@ -38,6 +38,7 @@ export default function HomeHero() {
           loop
           muted
           playsInline
+          preload="auto"
           className="w-full h-full object-cover"
         >
           <source src="/videos.mp4" type="video/mp4" />

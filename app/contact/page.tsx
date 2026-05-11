@@ -70,7 +70,7 @@ export default function ContactPage() {
                   <span className="text-3xl mb-3 block">🗓️</span>
                   <p className="font-bold text-[--c-navy] mb-1">Schedule a Call</p>
                   <p className="text-sm text-gray-500 mb-4">Discuss your goals directly with our expert.</p>
-                  <Link href="https://calendly.com/dr-shoba-kapoor/30min" className="text-[#4a6abf] font-semibold text-sm hover:underline">
+                  <Link href="/booking" className="text-[#4a6abf] font-semibold text-sm hover:underline">
                     Request Strategy Call &rarr;
                   </Link>
                 </div>
